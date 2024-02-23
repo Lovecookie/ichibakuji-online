@@ -5,6 +5,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaQuestionCircle } from "react-icons/fa";
 
 import styles from "./topnav.module.css";
+import Link from "next/link";
 
 export default function TopNav() {
     const [opacity, setOpacity] = useState(1);
@@ -39,10 +40,14 @@ export default function TopNav() {
                 <h1 className="text-center flex-1 text-2xl text-gray-200">一番くじ</h1>
                 <div className=" flex gap-4 justify-end items-center flex-1">
                     <span className="text-gray-200">
-                        <FaUserAlt size={24} />
+                        <Link href="/profile">
+                            <FaUserAlt size={24} />
+                        </Link>
                     </span>
                     <span className="content-center text-gray-200">
-                        <FaQuestionCircle size={24} />
+                        <Link href="/help">
+                            <FaQuestionCircle size={24} />
+                        </Link>
                     </span>
                 </div>
             </article>

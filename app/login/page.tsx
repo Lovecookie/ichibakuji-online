@@ -4,6 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import styles from "@/components/background/checkerboard.module.css";
+import { IResponseWith, LoginUser } from "@/interfaces/response";
+import { requestLogin } from "../lib/user-action";
+
+export const metadata = {
+    title: "Login",
+};
 
 export default function LoginPage() {
     const router = useRouter();
@@ -15,12 +21,20 @@ export default function LoginPage() {
         const email = formData.get("email") as string;
         const password = formData.get("password") as string;
 
+        const response: IResponseWith<LoginUser> = await requestLogin(email, password);
+        if (!response || response.code !== 0 || response.data === undefined) {
+            alert("Login failed");
+            return;
+        }
+
+        console.log("called LoginForm");
+
         router.push("/profile");
     };
 
     return (
-        <section className={styles.checkerBackground}>
-            <div className="p-8 bg-white bg-opacity-60 rounded-lg shadow-md max-w-sm w-full">
+        <main className={styles.checkerBackground}>
+            <article className="p-8 bg-white bg-opacity-60 rounded-lg shadow-md max-w-sm w-full">
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4 bg-center flex justify-center items-center">
                         <h1>로그인</h1>
@@ -57,7 +71,7 @@ export default function LoginPage() {
                         </div>
                     </div>
                 </form>
-            </div>
-        </section>
+            </article>
+        </main>
     );
 }

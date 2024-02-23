@@ -5,7 +5,7 @@ import { HiMiniChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 
 export default function ClickablePopupList() {
     return (
-        <div className="flex flex-col justify-between items-center m-4 space-y-2">
+        <div className="flex flex-col justify-between items-center space-y-2">
             <ClickablePopup />
             <ClickablePopup />
             <ClickablePopup />

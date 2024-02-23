@@ -1,10 +1,10 @@
 import { NextApiResponse } from "next";
 
-export interface IResponseWith<Data = any> {
+export type IResponseWith<Data = any> = {
     code: number;
     message: string;
     data?: Data;
-}
+};
 
 export type LoginUser = {
     userkey: number;
