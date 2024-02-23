@@ -21,7 +21,7 @@ export default function Home() {
             <TopNav />
             <div className="m-4">
                 <ClickablePopupList />
-                <div className="my-4">
+                <div className="my-20">
                     <SliderBox images={[picSlider1, picSlider2, picSlider3, picSlider4]} />
                 </div>
             </div>
