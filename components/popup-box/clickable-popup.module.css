@@ -1,0 +1,32 @@
+/* 초기 팝업 컨테이너 스타일 */
+.popupContainer {
+    cursor: pointer;
+    width: 95%; /* 초기 크기 설정 */
+    height: 50px; /* 초기 크기 설정 */
+    background-color: #f0f0f0; /* 배경색 설정 */
+    transition: all 0.3s ease-in-out; /* 부드러운 전환 효과 */
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* 팝업 확장시 적용될 스타일 */
+.popupExpanded {
+    width: 95%; /* 전체 너비로 확장 */
+    height: 90%; /* 전체 높이로 확장 */
+    top: 0;
+    left: 0;
+    transform: none;
+}
+
+.popupCollapsed {
+    /* 추가적인 축소 스타일 정의 (옵션) */
+    width: 95%; /* 초기 크기 설정 */
+    height: 50px; /* 초기 크기 설정 */
+}
+
+.popupContent {
+    padding: 20px; /* 내용에 여백 추가 */
+}
