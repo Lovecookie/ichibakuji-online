@@ -33,8 +33,8 @@ export default function SliderBox({ images }: SliderBoxProps) {
     };
 
     return (
-        <div className="relative flex flex-col items-center">
-            <div className="flex overflow-hidden relative rounded-xl w-full h-[500px]">
+        <div className="relative flex flex-col w-full h-full">
+            <div className="flex overflow-hidden relative rounded-xl w-full h-full">
                 {images.map((image, index) => (
                     <div
                         key={index}
@@ -51,7 +51,7 @@ export default function SliderBox({ images }: SliderBoxProps) {
                     </div>
                 ))}
             </div>
-            <div className="absolute top-1/4 flex flex-col h-2/4 left-48 z-10">
+            <div className="top-1/4 left-[5%] absolute flex flex-col z-10">
                 <div className="flex flex-none flex-row justify-around">
                     <div
                         className="px-5 py-3 bg-white opacity-80 text-gray-700 rounded-lg cursor-pointer"

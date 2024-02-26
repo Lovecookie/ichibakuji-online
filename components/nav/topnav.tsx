@@ -37,7 +37,7 @@ export default function TopNav() {
         >
             <article className="nav-content flex justify-between w-full">
                 <div className="flex-1"></div>
-                <h1 className="text-center flex-1 text-2xl text-gray-200">一番くじ</h1>
+                <h1 className="text-center flex-1 text-2xl text-gray-200">복권왕</h1>
                 <div className=" flex gap-4 justify-end items-center flex-1">
                     <span className="text-gray-200">
                         <Link href="/profile">
