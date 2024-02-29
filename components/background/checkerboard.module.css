@@ -3,10 +3,12 @@
     background-image: repeating-linear-gradient(90deg, #202020 0, #202020 25px, #141414 25px, #141414 50px);
 
     /* 높이 설정 (필요에 따라 조정) */
-    height: 2000px;
+    height: 100%;
 
     /* 너비 설정 (필요에 따라 조정) */
     width: 100%;
+
+    min-height: 100vh;
 }
 
 .checkerboardBackground {
@@ -18,7 +20,7 @@
     background-size: 100px 100px;
 
     /* 높이 설정 */
-    height: 500px;
+    height: 100%;
 
     /* 너비 설정 */
     width: 100%;
