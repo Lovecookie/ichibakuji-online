@@ -1,5 +1,6 @@
 "use client";
 
+import { playFirework } from "@/components/3rd-party/confetti";
 import { CouponList, CouponBox, HoverCouponBox } from "@/components/coupon/coupon";
 import OpacityEmptyModal from "@/components/modal/opacity-empty-modal";
 import { useState } from "react";
@@ -34,6 +35,7 @@ export default function CouponPage() {
     ];
 
     const handleShowModal = () => {
+        playFirework();
         setShowModal(true);
     };
 

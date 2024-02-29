@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
+    "canvas-confetti": "^1.9.2",
     "chroma-js": "^2.4.2",
     "heroicons": "^2.1.1",
     "next": "14.1.0",
@@ -19,6 +20,7 @@
     "sharp": "^0.33.2"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4",
     "@types/chroma-js": "^2.4.4",
     "@types/node": "^20",
     "@types/react": "^18",
