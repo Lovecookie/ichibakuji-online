@@ -8,5 +8,5 @@ interface IResultCouponImageProps {
 }
 
 export function ResultCouponImage({ src, alt, width = 128, height = 128 }: IResultCouponImageProps) {
-    return <Image src={`/assets/coupon/${src}`} alt={alt} width={width} height={height} />;
+    return <Image src={`/assets/coupons/${src}`} alt={alt} width={width} height={height} />;
 }

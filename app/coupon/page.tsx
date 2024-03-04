@@ -4,6 +4,8 @@ import { playFirework } from "@/components/3rd-party/confetti";
 import { CouponList, CouponBox, HoverCouponBox } from "@/components/coupon/coupon";
 import { DefaultSpinner, ESpinnerColor } from "@/components/loading/default-spinner";
 import TransparentEmptyModal from "@/components/modal/opacity-empty-modal";
+import { ResultCouponImage } from "@/components/static-assets/coupon-image";
+import { ResultCoupon } from "@/interfaces/response/coupon";
 import { requestResultCoupon } from "@/pages/api/coupon/open";
 import { useState } from "react";
 
@@ -16,6 +18,7 @@ const EModalType = {
 type EModalType = (typeof EModalType)[keyof typeof EModalType];
 
 export default function CouponPage() {
+    const [resultCouponInfo, setResultCouponInfo] = useState<ResultCoupon | undefined>(undefined);
     const [modalType, setModalType] = useState<EModalType>(EModalType.None);
 
     const couponInfos = [
@@ -46,7 +49,6 @@ export default function CouponPage() {
     ];
 
     const handleShowModal = () => {
-        // playFirework();
         setModalType(EModalType.PreOpened);
     };
 
@@ -54,10 +56,10 @@ export default function CouponPage() {
         setModalType(EModalType.None);
     };
 
+    const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
     const handleClickCoupon = async () => {
         setModalType(EModalType.Loading);
-
-        const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
         const responseWith = await requestResultCoupon("");
         if (responseWith.code !== 0) {
@@ -65,8 +67,9 @@ export default function CouponPage() {
             return;
         }
 
-        await delay(1000);
+        setResultCouponInfo(responseWith.data);
 
+        await delay(500);
         playFirework();
         setModalType(EModalType.Result);
     };
@@ -75,6 +78,7 @@ export default function CouponPage() {
         <section>
             <_SwitchComponent
                 modalType={modalType}
+                resultCoupon={resultCouponInfo}
                 handleClickCoupon={handleClickCoupon}
                 handleCloseModal={handleCloseModal}
             />
@@ -95,11 +99,12 @@ export default function CouponPage() {
 
 interface ISwitchComponentProps {
     modalType: EModalType;
+    resultCoupon?: ResultCoupon;
     handleClickCoupon: () => void;
     handleCloseModal: () => void;
 }
 
-function _SwitchComponent({ modalType, handleClickCoupon, handleCloseModal }: ISwitchComponentProps) {
+function _SwitchComponent({ modalType, resultCoupon, handleClickCoupon, handleCloseModal }: ISwitchComponentProps) {
     return (
         <div>
             {modalType === EModalType.None && null}
@@ -113,7 +118,7 @@ function _SwitchComponent({ modalType, handleClickCoupon, handleCloseModal }: IS
             )}
             {modalType === EModalType.Loading && (
                 <TransparentEmptyModal handleClose={handleCloseModal} hiddenCloseButton={true}>
-                    <div className="flex flex-col items-center">
+                    <div className="flex flex-col justify-center items-center w-full min-h-48">
                         <DefaultSpinner width="20" height="20" color={ESpinnerColor.yellow} />
                     </div>
                 </TransparentEmptyModal>
@@ -122,8 +127,14 @@ function _SwitchComponent({ modalType, handleClickCoupon, handleCloseModal }: IS
                 <TransparentEmptyModal handleClose={handleCloseModal}>
                     <div className="animate-jump-in animate-once animate-duration-500 animate-delay-0 animate-ease-in-out animate-alternate animate-fill-backwards">
                         <div className="flex flex-col items-center">
-                            <p className="text-white text-lg mt-4">축하합니다!</p>
-                            <CouponBox />
+                            <p className="text-white text-lg mt-4">축하해요!</p>
+                            {resultCoupon &&
+                                ResultCouponImage({
+                                    src: resultCoupon.pic,
+                                    alt: resultCoupon.title,
+                                    width: 180,
+                                    height: 180,
+                                })}
                         </div>
                     </div>
                 </TransparentEmptyModal>
