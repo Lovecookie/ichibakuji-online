@@ -5,7 +5,7 @@ import DefaultLabel from "@/components/input/default-label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { IResponseWith, LoginUser } from "@/interfaces/response";
+import { IResponseWith, LoginUser } from "@/interfaces/response/shared";
 import { requestLogin } from "../lib/user-action";
 import { Metadata } from "next";
 

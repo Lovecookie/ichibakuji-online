@@ -1,4 +1,4 @@
-import { UserProfile } from ".";
+import { UserProfile } from "./shared";
 
 export type StylerProfile = {
     userProfile: UserProfile;

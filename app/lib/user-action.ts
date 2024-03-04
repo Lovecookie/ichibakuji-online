@@ -1,6 +1,6 @@
 "use server";
 
-import { IResponseWith, LoginUser, ResponseError, ResponseSuccess } from "@/interfaces/response";
+import { IResponseWith, LoginUser, ResponseError, ResponseSuccess } from "@/interfaces/response/shared";
 import { TOptional } from "@/interfaces/util/optional";
 import { cookies } from "next/headers";
 

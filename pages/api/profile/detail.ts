@@ -1,5 +1,5 @@
 import { errorStatus, isValidPost, successStatus } from "@/interfaces";
-import { IResponseWith, LoginUser, ProfileDetail, ProfileDetailWithCrew } from "@/interfaces/response";
+import { IResponseWith, LoginUser, ProfileDetail, ProfileDetailWithCrew } from "@/interfaces/response/shared";
 import { PostAsync } from "@/interfaces/util/client-fetch";
 import { NextApiRequest, NextApiResponse } from "next";
 

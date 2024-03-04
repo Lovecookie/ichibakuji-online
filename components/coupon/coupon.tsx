@@ -25,12 +25,16 @@ export function CouponList({ children }: ICouponListProps) {
 export function CouponBox() {
     return (
         <div className="transition-transform duration-300 ease-in-out hover:scale-110">
-            <Image src={ImgCoupon} alt="CouponBox" objectFit="cover" />
+            <Image src={ImgCoupon} alt="CouponBox" style={{ objectFit: "cover" }} />
         </div>
     );
 }
 
-export function HoverCouponBox() {
+interface IHoverCouponBoxProps {
+    handleClickCoupon: () => void;
+}
+
+export function HoverCouponBox({ handleClickCoupon }: IHoverCouponBoxProps) {
     const [isHover, setIsHover] = useState(false);
 
     return (
@@ -38,11 +42,12 @@ export function HoverCouponBox() {
             className="transition-transform duration-300 ease-in-out hover:scale-105"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
+            onClick={() => handleClickCoupon()}
         >
             {isHover ? (
-                <Image src={ImgPreopenCoupon} alt="CouponBox" objectFit="cover" />
+                <Image src={ImgPreopenCoupon} alt="CouponBox" style={{ objectFit: "cover" }} />
             ) : (
-                <Image src={ImgCoupon} alt="CouponBox" objectFit="cover" />
+                <Image src={ImgCoupon} alt="CouponBox" style={{ objectFit: "cover" }} />
             )}
         </div>
     );

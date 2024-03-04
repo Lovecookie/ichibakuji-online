@@ -8,7 +8,7 @@ import DefaultLabel from "../input/default-label";
 import Link from "next/link";
 import { requestLogin } from "@/app/lib/user-action";
 import { useRouter } from "next/navigation";
-import { IResponseWith, LoginUser } from "@/interfaces/response";
+import { IResponseWith, LoginUser } from "@/interfaces/response/shared";
 
 export default function LoginForm({ callbackUrl }: { callbackUrl: string }) {
     const router = useRouter();

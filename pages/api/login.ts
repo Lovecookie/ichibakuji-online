@@ -1,6 +1,6 @@
 import { errorStatus, isValidPost, successStatus } from "@/interfaces";
 import { LoginRequest } from "@/interfaces/request";
-import { IResponseWith, LoginUser } from "@/interfaces/response";
+import { IResponseWith, LoginUser } from "@/interfaces/response/shared";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<IResponseWith<LoginUser>>) {

@@ -2,11 +2,22 @@
 
 import { playFirework } from "@/components/3rd-party/confetti";
 import { CouponList, CouponBox, HoverCouponBox } from "@/components/coupon/coupon";
-import OpacityEmptyModal from "@/components/modal/opacity-empty-modal";
+import { DefaultSpinner, ESpinnerColor } from "@/components/loading/default-spinner";
+import TransparentEmptyModal from "@/components/modal/opacity-empty-modal";
+import { requestResultCoupon } from "@/pages/api/coupon/open";
 import { useState } from "react";
 
+const EModalType = {
+    None: 0,
+    PreOpened: 1,
+    Loading: 2,
+    Result: 3,
+} as const;
+type EModalType = (typeof EModalType)[keyof typeof EModalType];
+
 export default function CouponPage() {
-    const [showModal, setShowModal] = useState(false);
+    const [modalType, setModalType] = useState<EModalType>(EModalType.None);
+
     const couponInfos = [
         { id: 1, name: "Coupon 1" },
         { id: 2, name: "Coupon 2" },
@@ -35,24 +46,38 @@ export default function CouponPage() {
     ];
 
     const handleShowModal = () => {
-        playFirework();
-        setShowModal(true);
+        // playFirework();
+        setModalType(EModalType.PreOpened);
     };
 
     const handleCloseModal = () => {
-        setShowModal(false);
+        setModalType(EModalType.None);
+    };
+
+    const handleClickCoupon = async () => {
+        setModalType(EModalType.Loading);
+
+        const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+        const responseWith = await requestResultCoupon("");
+        if (responseWith.code !== 0) {
+            setModalType(EModalType.None);
+            return;
+        }
+
+        await delay(1000);
+
+        playFirework();
+        setModalType(EModalType.Result);
     };
 
     return (
         <section>
-            {showModal && (
-                <OpacityEmptyModal opacity={0} onClose={handleCloseModal}>
-                    <div className="flex flex-col items-center">
-                        <p className="text-white text-lg mt-4">이 쿠폰을 선택할까요?</p>
-                        <HoverCouponBox />
-                    </div>
-                </OpacityEmptyModal>
-            )}
+            <_SwitchComponent
+                modalType={modalType}
+                handleClickCoupon={handleClickCoupon}
+                handleCloseModal={handleCloseModal}
+            />
             <div className="flex-1 mx-10 my-20">
                 <CouponList>
                     {couponInfos.map((info) => {
@@ -65,5 +90,44 @@ export default function CouponPage() {
                 </CouponList>
             </div>
         </section>
+    );
+}
+
+interface ISwitchComponentProps {
+    modalType: EModalType;
+    handleClickCoupon: () => void;
+    handleCloseModal: () => void;
+}
+
+function _SwitchComponent({ modalType, handleClickCoupon, handleCloseModal }: ISwitchComponentProps) {
+    return (
+        <div>
+            {modalType === EModalType.None && null}
+            {modalType === EModalType.PreOpened && (
+                <TransparentEmptyModal handleClose={handleCloseModal}>
+                    <div className="flex flex-col items-center">
+                        <p className="text-white text-lg mt-4">누르면 개봉됩니다.</p>
+                        <HoverCouponBox handleClickCoupon={handleClickCoupon} />
+                    </div>
+                </TransparentEmptyModal>
+            )}
+            {modalType === EModalType.Loading && (
+                <TransparentEmptyModal handleClose={handleCloseModal} hiddenCloseButton={true}>
+                    <div className="flex flex-col items-center">
+                        <DefaultSpinner width="20" height="20" color={ESpinnerColor.yellow} />
+                    </div>
+                </TransparentEmptyModal>
+            )}
+            {modalType === EModalType.Result && (
+                <TransparentEmptyModal handleClose={handleCloseModal}>
+                    <div className="animate-jump-in animate-once animate-duration-500 animate-delay-0 animate-ease-in-out animate-alternate animate-fill-backwards">
+                        <div className="flex flex-col items-center">
+                            <p className="text-white text-lg mt-4">축하합니다!</p>
+                            <CouponBox />
+                        </div>
+                    </div>
+                </TransparentEmptyModal>
+            )}
+        </div>
     );
 }

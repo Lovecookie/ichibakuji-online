@@ -1,5 +1,5 @@
 import { NextApiRequest } from "next";
-import { IResponseWith } from "./response";
+import { IResponseWith } from "./response/shared";
 
 export function isValidPost(req: NextApiRequest) {
     return req.method === "POST";
