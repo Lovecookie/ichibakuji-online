@@ -1,5 +1,5 @@
 import { errorStatus, isValidPost, successStatus } from "@/interfaces";
-import { LoginRequest } from "@/interfaces/request";
+import { LoginRequest } from "@/interfaces/request/shared";
 import { IResponseWith, LoginUser } from "@/interfaces/response/shared";
 import { NextApiRequest, NextApiResponse } from "next";
 
