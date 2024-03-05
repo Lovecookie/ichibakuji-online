@@ -1,20 +1,3 @@
-export const ESpinSize = {
-    size4: "4",
-    size6: "6",
-    size8: "8",
-    size10: "10",
-    size12: "12",
-    size14: "14",
-    size16: "16",
-    size18: "18",
-    size20: "20",
-    size22: "22",
-    size24: "24",
-    size26: "26",
-    size28: "28",
-} as const;
-type ESpinSize = (typeof ESpinSize)[keyof typeof ESpinSize];
-
 export const ESpinnerColor = {
     yellow: "fill-yellow-400",
     blue: "fill-blue-400",
@@ -25,17 +8,15 @@ export const ESpinnerColor = {
 type ESpinnerColor = (typeof ESpinnerColor)[keyof typeof ESpinnerColor];
 
 interface ISwitchComponentProps {
-    width?: ESpinSize;
-    height?: ESpinSize;
     color?: ESpinnerColor;
 }
 
-export function DefaultSpinner({ width = "6", height = "6", color = ESpinnerColor.yellow }: ISwitchComponentProps) {
+export function DefaultSpinner20({ color = ESpinnerColor.yellow }: ISwitchComponentProps) {
     return (
-        <div role="status">
+        <div role="status" className="w-20 h-20">
             <svg
                 aria-hidden="true"
-                className={`inline w-${width} h-${height} text-gray-200 animate-spin dark:text-gray-600 ${color}`}
+                className={`inline w-20 h-20 text-gray-200 animate-spin dark:text-gray-600 ${color}`}
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

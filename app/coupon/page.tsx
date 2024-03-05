@@ -2,7 +2,7 @@
 
 import { playFirework } from "@/components/3rd-party/confetti";
 import { CouponList, CouponBox, HoverCouponBox } from "@/components/coupon/coupon";
-import { DefaultSpinner, ESpinnerColor } from "@/components/loading/default-spinner";
+import { DefaultSpinner20, ESpinnerColor } from "@/components/loading/default-spinner";
 import TransparentEmptyModal from "@/components/modal/opacity-empty-modal";
 import { ResultCouponImage } from "@/components/static-assets/coupon-image";
 import { ResultCoupon } from "@/interfaces/response/coupon";
@@ -119,7 +119,7 @@ function _SwitchComponent({ modalType, resultCoupon, handleClickCoupon, handleCl
             {modalType === EModalType.Loading && (
                 <TransparentEmptyModal handleClose={handleCloseModal} hiddenCloseButton={true}>
                     <div className="flex flex-col justify-center items-center w-full min-h-48">
-                        <DefaultSpinner width="20" height="20" color={ESpinnerColor.yellow} />
+                        <DefaultSpinner20 width="20" height="20" color={ESpinnerColor.yellow} />
                     </div>
                 </TransparentEmptyModal>
             )}
