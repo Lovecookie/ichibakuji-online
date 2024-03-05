@@ -69,7 +69,6 @@ export default function CouponPage() {
 
         setResultCouponInfo(responseWith.data);
 
-        await delay(500);
         playFirework();
         setModalType(EModalType.Result);
     };
@@ -125,7 +124,7 @@ function _SwitchComponent({ modalType, resultCoupon, handleClickCoupon, handleCl
             )}
             {modalType === EModalType.Result && (
                 <TransparentEmptyModal handleClose={handleCloseModal}>
-                    <div className="animate-jump-in animate-delay-1000 animate-ease-in-out">
+                    <div className="animate-jump-in animate-delay-500 animate-ease-in-out">
                         <div className="flex flex-col items-center">
                             <p className="text-white text-lg mt-4">축하해요!</p>
                             {resultCoupon &&
