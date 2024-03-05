@@ -125,7 +125,7 @@ function _SwitchComponent({ modalType, resultCoupon, handleClickCoupon, handleCl
             )}
             {modalType === EModalType.Result && (
                 <TransparentEmptyModal handleClose={handleCloseModal}>
-                    <div className="animate-jump-in">
+                    <div className="animate-jump-in animate-delay-1000 animate-ease-in-out">
                         <div className="flex flex-col items-center">
                             <p className="text-white text-lg mt-4">축하해요!</p>
                             {resultCoupon &&
