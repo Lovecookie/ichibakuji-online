@@ -119,7 +119,7 @@ function _SwitchComponent({ modalType, resultCoupon, handleClickCoupon, handleCl
             {modalType === EModalType.Loading && (
                 <TransparentEmptyModal handleClose={handleCloseModal} hiddenCloseButton={true}>
                     <div className="flex flex-col justify-center items-center w-full min-h-48">
-                        <DefaultSpinner20 width="20" height="20" color={ESpinnerColor.yellow} />
+                        <DefaultSpinner20 color={ESpinnerColor.yellow} />
                     </div>
                 </TransparentEmptyModal>
             )}
